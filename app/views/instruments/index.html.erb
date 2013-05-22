@@ -1,0 +1,29 @@
+<h1>Instruments</h1>
+
+<p class='btn btn-inverse'><%= link_to 'New Instrument', new_instrument_path %></p>
+
+<br>
+<br>
+<br>
+
+<table class="table table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @instruments.each do |instrument| %>
+  <tr>
+    <td><%= link_to instrument.name, instrument %></td>
+    <td><%= image_tag(instrument.photo, :size => "200x500") %></td>
+    <td><%= link_to 'Show', instrument, class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Edit', edit_instrument_path(instrument), class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Destroy', instrument, class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+

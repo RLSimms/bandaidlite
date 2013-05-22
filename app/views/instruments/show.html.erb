@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p class='btn btn-inverse'><%= link_to 'Edit', edit_instrument_path(@instrument) %></p>
+<p class='btn btn-inverse'><%= link_to 'Back', instruments_path %></p>
+
+<br>
+<br>
+
+<p>
+  <b>Name:</b>
+  <%= @instrument.name %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= image_tag(@instrument.photo, :size => "100x200") %>
+</p>
+
+
+<p>
+<b>Users who play this instrument:</b><br />
+<% @instrument.skills.each do |skill| %>
+<%= link_to skill.user.name, skill.user %>
+<br />
+<% end %>
+</p>
+
+<br>
+<br>
+
+

@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-inverse' %> |
+<%= link_to 'Back', users_path, class: 'btn btn-inverse' %>
+
+<br>
+<br>
+<br>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Photo:</b><br />
+  <%= image_tag @user.photo, :width => 200 %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @user.address %>
+</p>
+
+<p>
+  <b>Date of Birth:</b>
+  <%= @user.dob %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>This User plays these Instruments:</b><br />
+  <% @user.skills.each do |skill| %>
+  <%= skill.instrument.name %><br />
+  <% end %>
+</p>
+
+<p>
+  <b>Interests:</b><br />
+  <% @user.interests.each do |interest| %>
+  <%= interest.genre.name %>
+  <% end %>
+</p>
+
+
+
+

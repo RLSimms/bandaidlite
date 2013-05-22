@@ -1,0 +1,23 @@
+  <p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_skill_path(@skill), class: 'btn btn-inverse' %> |
+<%= link_to 'Back', skills_path, class: 'btn btn-inverse' %>
+
+<br>
+<br>
+
+<p>
+  <b>User:</b>
+  <%= link_to @skill.user.name, @skill.user %>
+</p>
+
+<p>
+  <b>Instrument:</b>
+  <%= link_to @skill.instrument.name, @skill.instrument %><br /><br />
+  <%= image_tag @skill.instrument.photo, :width => 200 %>
+</p>
+
+
+
+
+

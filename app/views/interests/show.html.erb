@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_interest_path(@interest), class: 'btn btn-inverse' %> |
+<%= link_to 'Back', interests_path, class: 'btn btn-inverse' %>
+
+<br>
+<br>
+
+<p>
+  <b>Users:</b>
+  <%= link_to @interest.user.name, @interest.user %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%= link_to @interest.genre.name, @interest.genre %>
+</p>
+
+
+

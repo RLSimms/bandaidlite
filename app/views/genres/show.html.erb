@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b><br />
+  <li><%= @genre.name %></li>
+</p>
+
+
+<p>
+<b>Users who like this Genre:</b><br />
+<% @genre.interests.each do |interest| %>
+<li><%= interest.user.name %></li>
+<% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_genre_path(@genre) %> |
+<%= link_to 'Back', genres_path %>
