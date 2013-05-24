@@ -24,6 +24,19 @@
     <td><%= user.address %></td>
     <td><%= user.dob %></td>
     <td><%= user.email %></td>
+
+    <td>
+        <% vote = Vote.new(voting_user_id: session[:user_id], voted_for_user_id: user.id ) %>
+         <%= form_for vote do |f| %>
+          <%= f.hidden_field :voting_user_id %>
+          <%= f.hidden_field :voted_for_user_id %>
+          <%= f.submit "Vote", class: 'btn btn-primary' %>
+        <% end %>
+    </td>
+
+
+
+
     <td><%= link_to 'Show', user, class: 'btn btn-inverse' %></td>
     <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-inverse' %></td>
     <td><%= link_to 'Destroy', user, class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %></td>

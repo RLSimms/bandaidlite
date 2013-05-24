@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :instruments, :through => :skills
   has_many :interests
   has_many :genres, :through => :interests
+
+  has_many :voting_users, class_name: 'Vote', foreign_key: 'voting_user_id'
+  has_many :voted_for_users, class_name: 'Vote', foreign_key: 'voted_for_user_id'
+
 end

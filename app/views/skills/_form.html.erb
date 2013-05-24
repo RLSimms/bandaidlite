@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.collection_select :user_id, User.all, :id, :name %>
+    <%= f.hidden_field :user_id, :value => session[:user_id] %>
   </div>
+
   <div class="field">
-    <%= f.label :instrument_id %><br />
+    <%= f.label :instrument_id, "Add this Skill to my User profile:" %><br />
     <%= f.collection_select :instrument_id, Instrument.all, :id, :name %>
   </div>
   <div class="actions">

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Voting user:</b>
+  <%= @vote.voting_user.name %><br />
+  <%= image_tag @vote.voting_user.photo, :width => 100 %>
+</p>
+
+<p>
+  <b>Voted for user:</b>
+  <%= @vote.voted_for_user.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>

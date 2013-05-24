@@ -1,6 +1,23 @@
 class SkillsController < ApplicationController
+  before_filter :authorize_user, only: [:edit, :update, :destroy]
+  before_filter :require_signed_in_user, only: [:edit, :update, :destroy]
+
   # GET /skills
   # GET /skills.json
+
+ def require_signed_in_user
+    unless signed_in?
+    redirect_to new_session_url, notice: "Must be signed in for this."
+    end
+  end
+
+  def authorize_user
+    @skill = Skill.find(params[:id])
+    if @skill.user != current_user
+    redirect_to skills_url, notice: "Nice try!"
+    end
+  end
+
   def index
     @skills = Skill.all
 

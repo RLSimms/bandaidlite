@@ -1,4 +1,7 @@
 BandAidLite::Application.routes.draw do
+  resources :votes
+
+
   root to: 'Users#index'
 
   get '/sessions/new' => 'Sessions#new', as: 'new_session'

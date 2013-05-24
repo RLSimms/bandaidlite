@@ -1,0 +1,28 @@
+<h1>Votes</h1>
+
+<%= link_to 'New Vote', new_vote_path, class: 'btn btn-inverse' %>
+
+<br>
+<br>
+
+<table class='table table-hover'>
+  <tr>
+    <th>User:</th>
+    <th>Voted For:</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.voting_user.name %></td>
+    <td><%= vote.voted_for_user.name %></td>
+    <td><%= link_to 'Show', vote, class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Edit', edit_vote_path(vote), class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Destroy', vote, class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

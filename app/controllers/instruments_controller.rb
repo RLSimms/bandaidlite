@@ -1,6 +1,9 @@
 class InstrumentsController < ApplicationController
+
   # GET /instruments
   # GET /instruments.json
+
+
   def index
     @instruments = Instrument.all
 

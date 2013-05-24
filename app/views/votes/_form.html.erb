@@ -1,0 +1,26 @@
+<%= form_for(@vote) do |f| %>
+  <% if @vote.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
+
+      <ul>
+      <% @vote.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= f.hidden_field :voting_user_id, :value => session[:user_id] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :voted_for_user_id, "I want to vote for..." %><br />
+    <%= f.collection_select :voted_for_user_id, User.all, :id, :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,6 +1,16 @@
 class InterestsController < ApplicationController
+  before_filter :authorize_user, only: [:edit, :update, :destroy]
   # GET /interests
   # GET /interests.json
+
+ def authorize_user
+    @interest = Interest.find(params[:id])
+    if @interest.user != current_user
+    redirect_to interests_url, notice: "Nice try!"
+    end
+  end
+
+
   def index
     @interests = Interest.all
 
