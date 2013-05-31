@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User 1:</b>
+  <%= @conversation.sender.name %>
+</p>
+
+<p>
+  <b>User 2:</b>
+  <%= @conversation.receiver.name %>
+</p>
+
+
+<table class='table table-hover'>
+  <tr>
+    <th>Sender</th>
+    <th>Whats written</th>
+    <th>Receiver</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.sender.name %></td>
+    <td><%= message.whats_written %></td>
+    <td><%= message.receiver.name %></td>
+
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_conversation_path(@conversation) %> |
+<%= link_to 'Back', conversations_path %>

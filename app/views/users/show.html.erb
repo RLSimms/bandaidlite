@@ -35,7 +35,7 @@
 <p>
   <b>This User plays these Instruments:</b><br />
   <% @user.skills.each do |skill| %>
-  <%= skill.instrument.name %><br />
+  <li><%= skill.instrument.name %></li><br />
   <% end %>
 </p>
 
@@ -46,6 +46,22 @@
   <% end %>
 </p>
 
+<p>
+  <b>Sent Messages:</b><br />
+  <% @user.sent_messages.each do |sent_message| %>
+    Sent to:   <%= sent_message.receiver.name %>
+    <li><%= sent_message.whats_written %></li>
+  <% end %>
 
+</p>
+
+<p>
+  <b>Received Messages:</b><br />
+  <% @user.received_messages.each do |received_message| %>
+    Sent from:   <%= received_message.sender.name %>
+    <li><%= received_message.whats_written %></li>
+  <% end %>
+
+</p>
 
 

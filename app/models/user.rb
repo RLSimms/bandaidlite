@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   has_many :voting_users, class_name: 'Vote', foreign_key: 'voting_user_id'
   has_many :voted_for_users, class_name: 'Vote', foreign_key: 'voted_for_user_id'
 
+  has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
 end

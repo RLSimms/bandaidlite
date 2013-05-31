@@ -1,4 +1,13 @@
 BandAidLite::Application.routes.draw do
+  resources :conversations do
+    resources :messages
+    # '/conversations/:conversation_id/messages/new'
+  end
+
+
+  resources :messages
+
+
   resources :votes
 
 
