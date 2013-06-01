@@ -13,8 +13,18 @@ class UsersController < ApplicationController
   end
 
 
-  def index
+def index
+  if params[:search]
+    user = User.where("name LIKE ? OR email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").first
+    if user
+      @users = User.where("name LIKE ? OR email LIKE ?", "#{user.name}", "#{user.email}")
+      # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
+    else
+      @users = User.all
+    end
+  else
     @users = User.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb

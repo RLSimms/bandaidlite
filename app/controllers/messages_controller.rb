@@ -20,7 +20,17 @@ before_filter :authorize_user, only: [:edit, :update, :destroy]
   end
 
   def index
+  if params[:search]
+    message = Message.where("whats_written LIKE ?", "%#{params[:search]}%").first
+    if message
+      @messages = Message.where("whats_written LIKE ?", "#{message.whats_written}")
+      # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
+    else
+      @messages = Message.all
+    end
+  else
     @messages = Message.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb

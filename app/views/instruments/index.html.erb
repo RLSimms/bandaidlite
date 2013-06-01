@@ -1,3 +1,11 @@
+<%= form_tag(instruments_url, class: 'navbar-search pull-left', method: 'get') do %>
+  <%= text_field_tag :search, nil, placeholder: "Search by Instrument", class: 'search-query span3'  %>
+<% end %>
+
+<br />
+<br />
+<br />
+
 <h1>Instruments</h1>
 
 <p class='btn btn-inverse'><%= link_to 'New Instrument', new_instrument_path %></p>

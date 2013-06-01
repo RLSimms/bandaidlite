@@ -1,6 +1,19 @@
+<!-- <form class="navbar-search pull-left" action="">
+            <input type="text" class="search-query span3" placeholder="Search by User">
+          </form> -->
+
+<%= form_tag(users_url, class: 'navbar-search pull-left', method: 'get') do %>
+  <%= text_field_tag :search, nil, placeholder: "Search by User", class: 'search-query span3'  %>
+<% end %>
+
+<br />
+<br />
+<br />
+
 <h1>Users</h1>
 
 <p class='btn btn-inverse'><%= link_to 'New User', new_user_path %></p>
+
 
 <br />
 <br />

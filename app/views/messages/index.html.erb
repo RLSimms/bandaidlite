@@ -1,3 +1,11 @@
+<%= form_tag(messages_url, class: 'navbar-search pull-left', method: 'get') do %>
+  <%= text_field_tag :search, nil, placeholder: "Search by Message", class: 'search-query span3'  %>
+<% end %>
+
+<br />
+<br />
+<br />
+
 <h1>Messages</h1>
 
 <table class='table table-hover'>

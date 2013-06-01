@@ -5,7 +5,17 @@ class InstrumentsController < ApplicationController
 
 
   def index
+      if params[:search]
+    instrument = Instrument.where("name LIKE ?", "%#{params[:search]}%").first
+    if instrument
+      @instruments = Instrument.where("name LIKE ?", "#{instrument.name}")
+      # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
+    else
+      @instruments = Instrument.all
+    end
+  else
     @instruments = Instrument.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb
