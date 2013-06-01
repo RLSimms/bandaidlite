@@ -12,6 +12,15 @@
 
 <h1>Users</h1>
 
+<script>
+$(document).ready(function () {
+  $("h1").on("click", function() {
+      $("h1").slideToggle();
+    });
+});
+
+</script>
+
 <p class='btn btn-inverse'><%= link_to 'New User', new_user_path %></p>
 
 
@@ -37,6 +46,7 @@
     <td><%= user.address %></td>
     <td><%= user.dob %></td>
     <td><%= user.email %></td>
+    <td><%= user.voted_for_users.count %></td>
 
     <td>
         <% vote = Vote.new(voting_user_id: session[:user_id], voted_for_user_id: user.id ) %>

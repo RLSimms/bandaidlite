@@ -4,6 +4,7 @@
   belongs_to :voting_user, class_name: 'User', foreign_key: 'voting_user_id'
   belongs_to :voted_for_user, class_name: 'User', foreign_key: 'voted_for_user_id'
 
+  # belongs_to :user
 
 validate :user_cannot_vote_more_than_three_times
 validate :user_cannot_vote_for_themself

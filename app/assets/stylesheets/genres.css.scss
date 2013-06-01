@@ -3,9 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .navbar-logged-in {
-  width: 1200px;
+  width: 1300px;
+  float: left;
 }
 
 .navbar-logged-out {
-  width: 1200px;
+  width: 1300px;
+  float: left;
+}
+
+.navbar .brand {
+ float: left;
+}
+
+.btn {
+
+  color: white;
+
 }

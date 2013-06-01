@@ -1,6 +1,16 @@
 class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
+
+before_filter :authorize_user, only: [:show, :edit, :update, :destroy]
+
+def authorize_user
+  @conversation = Conversation.find(params[:id])
+  if @conversation.sender != current_user && @conversation.receiver != current_user
+    redirect_to conversations_url, notice: "Nice try!"
+  end
+end
+
   def index
     @conversations = Conversation.all
 
