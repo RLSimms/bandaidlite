@@ -32,6 +32,9 @@ before_filter :authorize_user, only: [:edit, :update, :destroy]
     @messages = Message.all
   end
 
+    @sent_messages = Message.where("sender_id == ?", "#{session[:user_id]}")
+    @received_messages = Message.where("receiver_id == ?", "#{session[:user_id]}")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @messages }
@@ -55,6 +58,8 @@ before_filter :authorize_user, only: [:edit, :update, :destroy]
     @message = Message.new
     @message.sender_id = session[:user_id]
     @users = User.where("id != ?", "#{session[:user_id]}")
+    @receiver_id = params[:receiver_id]
+    @message.receiver_id = params[:receiver_id]
 
 
     respond_to do |format|

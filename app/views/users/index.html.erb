@@ -21,7 +21,7 @@ $(document).ready(function () {
 
 </script>
 
-<p class='btn btn-inverse'><%= link_to 'New User', new_user_path %></p>
+<!-- <p class='btn btn-inverse'><%= link_to 'New User', new_user_path %></p> -->
 
 
 <br />
@@ -42,27 +42,35 @@ $(document).ready(function () {
 <% @users.each do |user| %>
   <tr>
     <td><%=link_to user.name, user %></td>
-    <td><%= image_tag user.photo, :width => 100 %></td>
+    <td><%= image_tag user.photo, :width => 100, class: 'img img-rounded' %></td>
     <td><%= user.address %></td>
     <td><%= user.dob %></td>
     <td><%= user.email %></td>
     <td><%= user.voted_for_users.count %></td>
 
-    <td>
+
+
+
+    <% if user == current_user %>
+    <td><%= link_to 'Show', user, class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-inverse' %></td>
+    <td><%= link_to 'Destroy', user, class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <% else %>
+
+        <td>
         <% vote = Vote.new(voting_user_id: session[:user_id], voted_for_user_id: user.id ) %>
          <%= form_for vote do |f| %>
           <%= f.hidden_field :voting_user_id %>
           <%= f.hidden_field :voted_for_user_id %>
-          <%= f.submit "Vote", class: 'btn btn-primary' %>
+          <%= f.submit "Vote", class: 'btn btn-inverse' %>
         <% end %>
     </td>
 
-
-
-
+    <td><%= link_to 'Message', new_message_url(receiver_id: user.id), class: 'btn btn-inverse' %></td>
     <td><%= link_to 'Show', user, class: 'btn btn-inverse' %></td>
-    <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-inverse' %></td>
-    <td><%= link_to 'Destroy', user, class: 'btn btn-inverse', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <% end %>
   </tr>
 <% end %>
 </table>
