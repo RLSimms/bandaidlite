@@ -20,16 +20,20 @@ before_filter :authorize_user, only: [:edit, :update, :destroy]
   end
 
   def index
+
+  page_number = params[:page].to_i
+  @messages = Message.page(page_number).per(5)
+
   if params[:search]
-    message = Message.where("whats_written LIKE ?", "%#{params[:search]}%").first
-    if message
-      @messages = Message.where("whats_written LIKE ?", "#{message.whats_written}")
+    @message_exists_from_search = Message.where("whats_written LIKE ?", "%#{params[:search]}%").first
+    if @message_exists_from_search
+      @messages_returned_from_search = Message.where("whats_written LIKE ?", "#{message.whats_written}")
       # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
     else
-      @messages = Message.all
+      @messages
     end
   else
-    @messages = Message.all
+    @messages
   end
 
     @sent_messages = Message.where("sender_id == ?", "#{session[:user_id]}")

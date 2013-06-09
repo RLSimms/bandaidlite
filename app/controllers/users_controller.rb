@@ -14,16 +14,19 @@ class UsersController < ApplicationController
 
 
 def index
+  page_number = params[:page].to_i
+  @users = User.page(page_number).per(4)
+
   if params[:search]
-    user = User.where("name LIKE ? OR email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").first
-    if user
-      @users = User.where("name LIKE ? OR email LIKE ?", "#{user.name}", "#{user.email}")
+    @user_exists_from_search = User.where("name LIKE ? OR email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").first
+    if @user_exists_from_search
+      @users_returned_from_search = User.where("name LIKE ? OR email LIKE ?", "#{user.name}", "#{user.email}")
       # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
     else
-      @users = User.all
+      @users
     end
   else
-    @users = User.all
+    @users
   end
 
     respond_to do |format|
